@@ -39,6 +39,7 @@ def cd(dir):
     global winualias
     global cwd
     global nix_path
+
     if dir != " ":
         if dir in winualias.keys():
             cwd = winualias[dir]
@@ -64,15 +65,24 @@ def cd(dir):
     else:
         print("cd - no directory was specified")
 
-def ld(dummy):
-    print("Files in", cwd + ":")
-    print(cwd_files)
-    print(" ")
-    print("Directories in", cwd + ":")
-    print(cwd_dirs)
-    print(" ")
-    if dummy != " ":
-        print("note: ld takes no arguments; at least one was specified by user")
+def ld(arg):
+    if arg == " ":
+        print("Files in", nix_path + ":")
+        print(cwd_files)
+        print(" ")
+        print("Directories in", nix_path + ":")
+        print(cwd_dirs)
+        print(" ")
+    elif arg.lower() == "-f":
+        print("Files in", nix_path + ":")
+        print(cwd_files)
+        print(" ")
+    elif arg.lower() == "-d":
+        print("Directories in", nix_path + ":")
+        print(cwd_dirs)
+        print(" ")
+    else:
+        print("Invalid option:", arg)
 
 def interpret(command):
     cmd = command[0].lower()
