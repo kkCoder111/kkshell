@@ -1,4 +1,5 @@
 import os
+import json
 
 version = "0.0.1"
 print("kkShell", version)
@@ -15,11 +16,32 @@ elif os.name == "posix":
     ostype = "nix"
 
 winud = "C:\\Users\\" + uname
+
 winualias = {
     "/usr/": winud,
     "/etc/": "C:\\Windows",
     "/bin/": "C:\\Program Files"
 }
+
+alias_file_name = "aliases.json"
+
+if not os.path.isfile(alias_file_name):
+    open("aliases.json", mode="x")
+alias = open("aliases.json", mode="r")
+alias_w = open("aliases.json", mode="w")
+
+try:
+    aliases = json.loads(alias.read())
+except json.decoder.JSONDecodeError:
+    print(alias.read())
+    alias.close()
+    alias_w.write("{ \n 'dummy':'dummy' \n}")
+    alias_w.close()
+    alias = open("aliases.json", mode="r")
+    print(alias.read())
+    alias_w = open("aliases.json", mode="w")
+    aliases = json.loads(alias.read())
+del aliases["dummy"]
 
 def getfiles(wd):
     files = os.listdir(wd)
@@ -42,7 +64,6 @@ def cd(dir):
     global path_snapshot
     try:
         if dir != " " and dir != "..":
-            print (dir)
             if dir in winualias.keys():
                 cwd = winualias[dir]
             elif dir[0] == "/" and ostype == "win":
@@ -71,7 +92,6 @@ def cd(dir):
             path_split = nix_path.split("/")
             path_split.remove(path_split[len(path_split)-1])
             path_split = "/" + "/".join(path_split)
-            print(path_split)
         elif dir == "-d":
             pwd(dir)
         else:
@@ -86,7 +106,6 @@ def cd(dir):
                 dir = dir.replace("/", "")
                 dir = dir.replace("\\", "")
                 todir = path_snapshot + "/" + dir
-            print(todir)
             cd(todir)
         except OSError:
             print("cd - cannot find path '" + dir + "'")
@@ -143,6 +162,13 @@ def pwd(dummy):
 
 def d(path):
     cd(path)
+
+def al(alias):
+    alias.split("=")
+    alias_name = alias[0]
+    alias_contents = alias[1]
+    aliases[alias_name] = alias_contents
+
 
 def interpret(command):
     cmd = command[0].lower()
