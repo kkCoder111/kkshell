@@ -70,7 +70,7 @@ def cd(dir):
         elif dir == "..":
             path_split = nix_path.split("/")
             path_split.remove(path_split[len(path_split)-1])
-            path_split = +"/" + "/".join(path_split)
+            path_split = "/" + "/".join(path_split)
             print(path_split)
         elif dir == "-d":
             pwd(dir)
@@ -111,7 +111,7 @@ def ld(arg):
         print(" ")
     else:
         print("Invalid option:", arg)
-def start(arg):
+def s(arg):
     if ostype == "nix":
         print("s is not currently available on Linux")
     else:
@@ -147,7 +147,7 @@ def d(path):
 def interpret(command):
     cmd = command[0].lower()
     args = command[1:]
-    args = "".join(args)
+    args = " ".join(args)
 
     if cmd in commands.keys():
         if len(command) != 1:
@@ -163,7 +163,13 @@ cd(cwd)
 
 commands = {
     "cd": cd,
-    "ld": ld
+    "ld": ld,
+    "s": s,
+    "install": install,
+    "uninstall": uninstall,
+    "dci": dci,
+    "pwd": pwd,
+    "d": d
 }
 
 command = input(nix_path + " $ ")
