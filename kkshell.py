@@ -30,10 +30,10 @@ alias = open("aliases.json", mode="r")
 aliases = json.loads(alias.read())
 alias.close()
 
-aliases_real = aliases
-
-del aliases["dummy"]
-print(aliases_real)
+try:
+    del aliases["dummy"]
+except KeyError:
+    pass
 
 print(aliases)
 
@@ -162,10 +162,9 @@ def al(alias):
     alias_name = alias[0]
     alias_contents = alias[1]
     aliases[alias_name] = alias_contents
-    aliases_real[alias_name] = alias_contents
     print("DEBUGGING: Alias saved")
     alias = open("aliases.json", mode="w")
-    to_write = json.dumps(aliases_real)
+    to_write = json.dumps(aliases)
     alias.write(to_write)
     print("DEBUGGING: Alias written")
 
@@ -181,7 +180,7 @@ def interpret(command):
     if len(alias_list) != 0:
         command = " ".join(command)
         for i in alias_list:
-            cur_alias = alias_list[i]
+            cur_alias = aliases[i]
             command.replace(cur_alias, aliases[cur_alias])
         command = command.split(" ")
     cmd = command[0].lower()
