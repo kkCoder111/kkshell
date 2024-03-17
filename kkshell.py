@@ -30,6 +30,8 @@ alias = open("aliases.json", mode="r")
 aliases = json.loads(alias.read())
 alias.close()
 
+aliases_real = aliases
+
 del aliases["dummy"]
 
 print(aliases)
@@ -159,6 +161,18 @@ def al(alias):
     alias_name = alias[0]
     alias_contents = alias[1]
     aliases[alias_name] = alias_contents
+    aliases_real[alias_name] = alias_contents
+    print("DEBUGGING: Alias saved")
+    alias = open("aliases.json", mode="w")
+    to_write = json.dumps(aliases_real)
+    alias.write(to_write)
+    print("DEBUGGING: Alias written")
+
+def cs(dummy):
+    if ostype == "win":
+        os.system("cls")
+    else:
+        os.system("clear")
 
 
 def interpret(command):
@@ -186,7 +200,9 @@ commands = {
     "uninstall": uninstall,
     "dci": dci,
     "pwd": pwd,
-    "d": d
+    "d": d,
+    "al": al,
+    "cs": cs
 }
 
 command = input(nix_path + " $ ")
