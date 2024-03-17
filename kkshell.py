@@ -2,7 +2,7 @@ import os
 import json
 import help
 
-version = 0.8
+version = float(open("version.txt").read())
 #Prints version
 print("kkShell", str(version))
 
