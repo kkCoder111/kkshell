@@ -280,7 +280,8 @@ commands = {
     "d": d,
     "al": al,
     "cs": cs,
-    "help": hlp
+    "help": hlp,
+    "update": update
 }
 
 command = input(nix_path + " $ ")
