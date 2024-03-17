@@ -177,6 +177,13 @@ def cs(dummy):
 
 
 def interpret(command):
+    alias_list = list(aliases.keys())
+    if len(alias_list) != 0:
+        command = " ".join(command)
+        for i in alias_list:
+            cur_alias = alias_list[i]
+            command.replace(cur_alias, aliases[cur_alias])
+        command = command.split(" ")
     cmd = command[0].lower()
     args = command[1:]
     args = " ".join(args)
