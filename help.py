@@ -73,7 +73,7 @@ def uninstall():
     print("Uninstalls an app using WinGet")
     print("app - the app to uninstall")
     
-def start():
+def s():
     if os.name == "nt":
         os.system("cls")
     elif os.name == "posix":
