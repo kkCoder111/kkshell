@@ -28,9 +28,11 @@ alias_file_name = "aliases.json"
 alias = open("aliases.json", mode="r")
 alias_w = open("aliases.json", mode="w")
 
-aliases = json.dumps(alias.read())
+aliases = json.load(alias.read())
 
 del aliases["dummy"]
+
+print(aliases)
 
 def getfiles(wd):
     files = os.listdir(wd)
