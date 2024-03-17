@@ -25,22 +25,11 @@ winualias = {
 
 alias_file_name = "aliases.json"
 
-if not os.path.isfile(alias_file_name):
-    open("aliases.json", mode="x")
 alias = open("aliases.json", mode="r")
 alias_w = open("aliases.json", mode="w")
 
-try:
-    aliases = json.loads(alias.read())
-except json.decoder.JSONDecodeError:
-    print(alias.read())
-    alias.close()
-    alias_w.write("{ \n 'dummy':'dummy' \n}")
-    alias_w.close()
-    alias = open("aliases.json", mode="r")
-    print(alias.read())
-    alias_w = open("aliases.json", mode="w")
-    aliases = json.loads(alias.read())
+aliases = json.dumps(alias.read())
+
 del aliases["dummy"]
 
 def getfiles(wd):
