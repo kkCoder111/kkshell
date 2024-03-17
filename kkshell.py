@@ -27,7 +27,8 @@ alias_file_name = "aliases.json"
 
 alias = open("aliases.json", mode="r")
 
-aliases = json.load(alias.read())
+aliases = json.loads(alias.read())
+alias.close()
 
 del aliases["dummy"]
 
