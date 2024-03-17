@@ -26,7 +26,6 @@ winualias = {
 alias_file_name = "aliases.json"
 
 alias = open("aliases.json", mode="r")
-alias_w = open("aliases.json", mode="w")
 
 aliases = json.load(alias.read())
 
