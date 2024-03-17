@@ -33,6 +33,7 @@ alias.close()
 aliases_real = aliases
 
 del aliases["dummy"]
+print(aliases_real)
 
 print(aliases)
 
