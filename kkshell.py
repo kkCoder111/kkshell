@@ -33,13 +33,13 @@ def internet_on():
     except request.URLError: 
         return False
 
-if internet_on():
+"""if internet_on():
     server_version = requests.get("https://raw.githubusercontent.com/kkCoder111/kkshell/main/version.txt")
     server_version = float(server_version.text)
     if server_version > version:
         print("Update available! Run 'update' to update.")
 else:
-    print("Not connected to the internet, so not checking for updates.")
+    print("Not connected to the internet, so not checking for updates.")"""
 
 #Gets username
 uname = os.getlogin()
@@ -297,7 +297,7 @@ commands = {
     "al": al,
     "cs": cs,
     "help": hlp,
-    "update": update
+    #"update": update
 }
 
 command = input(nix_path + " $ ")
