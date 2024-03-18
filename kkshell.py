@@ -30,7 +30,7 @@ def internet_on():
     try:
         request.urlopen('http://github.com', timeout=1)
         return True
-    except request.URLError or requests.exceptions.NewConnectionError or requests.exceptions.ConnectionError or socket.gaierror: 
+    except request.URLError: 
         return False
 
 if internet_on():
