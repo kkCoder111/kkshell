@@ -1,7 +1,23 @@
 import os
 import json
 import help
-import requests
+import sys
+try:
+    import requests
+except:
+    if os.name == "nt":
+        print("installing dependency")
+        os.system("pip install requests")
+        print("Done, restart kkShell to see changes. Press ENTER to continue.")
+        input(" ")
+        sys.exit()
+        
+    else:
+        print("installing dependency")
+        os.system("pip3 install requests")
+        print("Done, restart kkShell to see changes. Press ENTER to continue.")
+        input(" ")
+        sys.exit()
 import socket
 import urllib.request as request
 
