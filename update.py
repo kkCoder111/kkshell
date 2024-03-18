@@ -35,9 +35,9 @@ else:
             os.remove("help.py")
             os.remove("version.txt")
             print("2/3: Getting updated files")
-            new_main = get("https://raw.githubusercontent.com/kkCoder111/kkshell/main/kkshell.py")
-            new_help = get("https://raw.githubusercontent.com/kkCoder111/kkshell/main/help.py")
-            new_ver = get("https://raw.githubusercontent.com/kkCoder111/kkshell/main/version.txt")
+            new_main = get("https://raw.githubusercontent.com/kkCoder111/kkshell/main/kkshell.py").text
+            new_help = get("https://raw.githubusercontent.com/kkCoder111/kkshell/main/help.py").text
+            new_ver = get("https://raw.githubusercontent.com/kkCoder111/kkshell/main/version.txt").text
             print("3/3: Apply changes")
             open("kkshell.py", mode="w").write(new_main)
             open("help.py", mode="w").write(new_help)
