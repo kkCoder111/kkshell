@@ -15,8 +15,7 @@ def internet_on():
         return False
 
 def get(file, headers):
-    requests.get(file, headers=headers)
-    
+    return requests.get(file, headers=headers).text
 if not internet_on():
     print("Not connected to the internet")
 else:
@@ -42,7 +41,7 @@ else:
             print("3/3: Apply changes")
             open("kkshell.py", mode="w").write(str(new_main))
             open("help.py", mode="w").write(str(new_help))
-            open("version.txt", mode="w").write(float(new_ver))
+            open("version.txt", mode="w").write(str(new_ver))
             print("Done. Restart kkShell to see the changes. Press ENTER to continue")
             input(" ")
             sys.exit()
