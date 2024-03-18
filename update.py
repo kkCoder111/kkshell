@@ -14,8 +14,8 @@ def internet_on():
     except request.URLError or requests.exceptions.NewConnectionError or requests.exceptions.ConnectionError or socket.gaierror: 
         return False
 
-def get(file):
-    requests.get(file)
+def get(file, headers):
+    requests.get(file, headers=headers)
     
 if not internet_on():
     print("Not connected to the internet")
@@ -35,13 +35,14 @@ else:
             os.remove("help.py")
             os.remove("version.txt")
             print("2/3: Getting updated files")
-            new_main = get("https://raw.githubusercontent.com/kkCoder111/kkshell/main/kkshell.py")
-            new_help = get("https://raw.githubusercontent.com/kkCoder111/kkshell/main/help.py")
-            new_ver = get("https://raw.githubusercontent.com/kkCoder111/kkshell/main/version.txt")
+            headers = { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0' }
+            new_main = get("https://raw.githubusercontent.com/kkCoder111/kkshell/main/kkshell.py", headers=headers)
+            new_help = get("https://raw.githubusercontent.com/kkCoder111/kkshell/main/help.py", headers=headers)
+            new_ver = get("https://raw.githubusercontent.com/kkCoder111/kkshell/main/version.txt", headers=headers)
             print("3/3: Apply changes")
-            open("kkshell.py", mode="w").write(new_main)
-            open("help.py", mode="w").write(new_help)
-            open("version.txt", mode="w").write(new_ver)
+            open("kkshell.py", mode="w").write(str(new_main))
+            open("help.py", mode="w").write(str(new_help))
+            open("version.txt", mode="w").write(float(new_ver))
             print("Done. Restart kkShell to see the changes. Press ENTER to continue")
             input(" ")
             sys.exit()
