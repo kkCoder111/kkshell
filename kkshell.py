@@ -26,7 +26,7 @@ version = float(open("version.txt").read())
 #Prints version
 print("kkShell", str(version))
 
-def internet_on():
+"""def internet_on():
     try:
         request.urlopen('http://github.com', timeout=1)
         return True
@@ -39,7 +39,7 @@ if internet_on():
     if server_version > version:
         print("Update available! Run 'update' to update.")
 else:
-    print("Not connected to the internet, so not checking for updates.")
+    print("Not connected to the internet, so not checking for updates.")"""
 
 #Gets username
 uname = os.getlogin()
@@ -297,7 +297,7 @@ commands = {
     "al": al,
     "cs": cs,
     "help": hlp,
-    "update": update
+    #"update": update
 }
 
 command = input(nix_path + " $ ")
