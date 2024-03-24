@@ -240,7 +240,7 @@ def hlp(args):
             todo = "help." + args.lower() + "()"
             exec(todo)
         except SyntaxError:
-            help.start()
+            help.s()
 
 def update(args):
     pyrun("update.py")
